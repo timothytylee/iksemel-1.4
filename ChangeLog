@@ -1,4 +1,5 @@
 2015-05-26  Timothy Lee
+	* iks.c: iks_string() returns nul terminated strings for cdata nodes
 	* sax.c: Fix handling of ending ]] sequences in CDATA sections
 	  bug report and patch by oscarvdbosch
 	* tst-sax.c: Test coverage for fixed bug
