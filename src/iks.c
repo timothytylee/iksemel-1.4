@@ -758,5 +758,10 @@ iks_copy_within (iks *x, ikstack *s)
 iks *
 iks_copy (iks *x)
 {
-	return iks_copy_within (x, iks_stack_new (sizeof (struct iks_tag) * 6, 256));
+	ikstack *s;
+
+	s = iks_stack_new (sizeof (struct iks_tag) * 6, 256);
+	if (!s) return NULL;
+
+	return iks_copy_within (x, s);
 }

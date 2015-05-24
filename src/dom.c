@@ -24,6 +24,7 @@ tagHook (struct dom_data *data, char *name, char **atts, int type)
 		} else {
 			ikstack *s;
 			s = iks_stack_new (data->chunk_size, data->chunk_size);
+			if (!s) return IKS_NOMEM;
 			x = iks_new_within (name, s);
 		}
 		if (atts) {
