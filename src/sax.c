@@ -250,6 +250,11 @@ sax_core (iksparser *prs, char *buf, int len)
 		if (0 == c || 0xFE == c || 0xFF == c) return IKS_BADXML;
 		if (prs->uni_max) {
 			if ((c & 0xC0) != 0x80) return IKS_BADXML;
+			if (stack_old == -1 && prs->uni_len > pos
+				&& (prs->context == C_TAG
+					|| prs->context == C_ATTRIBUTE_1
+					|| prs->context == C_VALUE_APOS
+					|| prs->context == C_VALUE_QUOT)) stack_old = 0;
 			prs->uni_char <<= 6;
 			prs->uni_char += (c & 0x3f);
 			prs->uni_len++;
