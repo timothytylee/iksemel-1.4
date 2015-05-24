@@ -42,8 +42,10 @@ iks_set_mem_funcs (void *(*malloc_func)(size_t size), void (*free_func)(void *pt
 char *
 iks_strdup (const char *src)
 {
-	if (src) return strdup(src);
-	return NULL;
+	char * dst = NULL;
+	if (src) dst = iks_malloc (strlen (src) + 1);
+	if (dst) iks_strcat (dst, src);
+	return dst;
 }
 
 char *
