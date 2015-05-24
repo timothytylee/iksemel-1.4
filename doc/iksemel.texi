@@ -902,6 +902,15 @@ number which server is listening to. You can use @code{IKS_JABBER_PORT}
 macro for the default jabber client port (5222).
 @end deftypefun
 
+@deftypefun int iks_connect_via (iksparser *@var{prs}, const char *@var{server}, int @var{port}, const char *@var{server_name});
+This function connects the parser to a server and sends stream header for you.
+@var{server} is the host name of the server and @var{port} is the tcp port
+number which server is listening to. You can use @code{IKS_JABBER_PORT}
+macro for the default jabber client port (5222).
+@var{server_name} is the name of the server, you need to use it when the server to connect is
+different to the server in the JID, like server defined via a DNS SRV entry.
+@end deftypefun
+
 @deftypefun int iks_connect_fd (iksparser *@var{prs}, int @var{fd});
 Attaches parser to an already opened connection. @var{fd} is the socket
 descriptor. Note that @code{iks_disconnect} doesn't close the socket
