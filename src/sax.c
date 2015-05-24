@@ -196,6 +196,47 @@ stack_expand (iksparser *prs, int len)
 	prs->stack_pos++; \
 }
 
+static void
+sax_unescape_attributes (iksparser *prs)
+{
+	int idx;
+	if (prs->attcur == 0) return;
+	for (idx = 0;  idx < prs->attcur;  idx += 2)
+	{
+		char *src = prs->atts[idx + 1];
+		char *dst = prs->atts[idx + 1];
+		char *entity = NULL;
+		char c;
+		while ((c = *src++))
+		{
+			if (c == '&') {
+				entity = src;
+			} else if (!entity) {
+				*dst++ = c;
+			}
+			else if (c == ';')
+			{
+				int len = src - entity - 1;
+				if ((len == 3) && (memcmp(entity, "amp", 3) == 0)) {
+					*dst++ = '&';
+				} else if ((len == 4) && (memcmp(entity, "quot", 4) == 0)) {
+					*dst++ = '"';
+				} else if ((len == 4) && (memcmp(entity, "apos", 4) == 0)) {
+					*dst++ = '\'';
+				} else if ((len == 2) && (memcmp(entity, "lt", 2) == 0)) {
+					*dst++ = '<';
+				} else if ((len == 2) && (memcmp(entity, "gt", 2) == 0)) {
+					*dst++ = '>';
+				} else {
+					*dst++ = '?';
+				}
+				entity = NULL;
+			}
+		}
+		*dst = '\0';
+	}
+}
+
 static enum ikserror
 sax_core (iksparser *prs, char *buf, int len)
 {
@@ -337,6 +378,7 @@ sax_core (iksparser *prs, char *buf, int len)
 				if (c != '>') return IKS_BADXML;
 				if (prs->tagHook) {
 					char **tmp;
+					sax_unescape_attributes (prs);
 					if (prs->attcur == 0) tmp = NULL; else tmp = prs->atts;
 					err = prs->tagHook (prs->user_data, prs->tag_name, tmp, prs->tagtype);
 					if (IKS_OK != err) return err;

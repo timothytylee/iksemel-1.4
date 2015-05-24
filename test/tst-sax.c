@@ -377,6 +377,10 @@ main (int argc, char *argv[])
 	element (IKS_TAG, IKS_CLOSE, "a", NMA);
 	test ();
 
+	document ("<a x1='I&apos;m fixing parser&amp;tester for &quot;&lt;&quot; and &quot;&gt;&quot; chars.'/>");
+	element (IKS_TAG, IKS_SINGLE, "a", "x1", "I'm fixing parser&tester for \"<\" and \">\" chars.", NMA);
+	test ();
+
 	document ("<test>\xFF</test>");
 	test_bad (6);
 
