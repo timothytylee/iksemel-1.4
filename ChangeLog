@@ -1,10 +1,17 @@
 2015-05-26  Timothy Lee
+	* dom.c: Check for failed malloc()
+	* iks.c: Check for failed malloc()
 	* iks.c: iks_string() returns nul terminated strings for cdata nodes
+	* md5.c: Fix padding for multiples of 64 bytes
+	* sax.c: Correctly handle multi-byte UTF-8 sequences split across
+	  iks_parse() calls
+	* sax.c: Unescape XML entities inside attributes
 	* sax.c: Fix handling of ending ]] sequences in CDATA sections
 	  bug report and patch by oscarvdbosch
-	* tst-sax.c: Test coverage for fixed bug
-	* md5.c: Fix padding for multiples of 64 bytes
-	* tst-md5.c: Test coverage for fixed bug
+	* utility.c: Use iks_malloc() inside iks_strdup() to allocate memory
+	* tst-sax.c: Test coverage for fixed bugs
+	* tst-md5.c: Test coverage for fixed bugs
+	* iksemel.texi: Document iks_connect_via()
 
 2009-07-22  Gurer
 	* io-posix.c: send/recv now handles EAGAIN/EINTR.
