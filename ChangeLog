@@ -1,4 +1,5 @@
 2015-05-26  Timothy Lee
+	* version bump to 1.4.1
 	* dom.c: Check for failed malloc()
 	* iks.c: Check for failed malloc()
 	* iks.c: iks_string() returns nul terminated strings for cdata nodes

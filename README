@@ -1,9 +1,10 @@
 
-                      iksemel 1.4
+                      iksemel 1.4.1
 
-            http://code.google.com/p/iksemel
+            https://github.com/timothytylee/iksemel-1.4
 
-Copyright (c) 2000-2007 Gurer Ozen <meduketto at gmail.com>
+Copyright (c) 2000-2009 Gurer Ozen <meduketto at gmail.com>
+Copyright (c) 2015 Timothy Lee <timothy dot ty dot lee at gmail.com>
 
 
 Introduction:
@@ -14,6 +15,8 @@ It provides SAX, DOM, and special Jabber stream APIs. Library is coded
 in ANSI C except the network code (which is POSIX compatible), thus
 highly portable. Iksemel is released under GNU Lesser General Public
 License. A copy of the license is included in the COPYING file.
+
+This is a fork of iksemel 1.4 hosted at http://code.google.com/p/iksemel
 
 
 Requirements:

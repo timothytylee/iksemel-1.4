@@ -1,3 +1,7 @@
+V1.4.1 (2015-05-26)
+* Fork of iksemel-1.4 with bug fixes hosted at:
+    https://github.com/timothytylee/iksemel-1.4/
+
 V1.4 (2009-07-25)
 * Some previously rejected valid UTF8 sequences are now accepted.
 * Whitespace is allowed between attribute name, equal sign and value.
