@@ -1,3 +1,7 @@
+V1.4.2 (2016-03-05)
+* Support newer GnuTLS
+* tst-ikstack now passes on ppc, sparc and arm
+
 V1.4.1 (2015-05-26)
 * Fork of iksemel-1.4 with bug fixes hosted at:
     https://github.com/timothytylee/iksemel-1.4/

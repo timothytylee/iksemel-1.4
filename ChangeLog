@@ -1,3 +1,11 @@
+2016-03-05  Timothy Lee
+	* version bump to 1.4.2
+	* stream.c: Use gnutls_set_default_priority() to support GnuTLS 3.4.0
+	  and avoid security problems
+	* ikstack.c: Fix alignment on architectures where doubles are 64-bit
+	  aligned, but pointers are smaller
+	* configure.ac: Do not use AM_PATH_LIBGNUTLS()
+
 2015-05-26  Timothy Lee
 	* version bump to 1.4.1
 	* dom.c: Check for failed malloc()
