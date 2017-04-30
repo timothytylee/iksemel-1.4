@@ -45,14 +45,23 @@ AC_SEARCH_LIBS(recv,socket)
 AC_CHECK_FUNCS(getopt_long)
 AC_CHECK_FUNCS(getaddrinfo)
 
+dnl Options for overriding TLS checks
+AC_ARG_WITH([gnutls],
+  AS_HELP_STRING([--without-gnutls],[disable checking for GNU TLS]),
+  [with_gnutls=$enableval],
+  [with_gnutls=yes]
+)
+
 dnl Check GNU TLS
-PKG_CHECK_MODULES(GNUTLS, gnutls >= 1.0.0, have_gnutls=yes, have_gnutls=no)
-if test "x$have_gnutls" = "xyes"; then
-  LIBGNUTLS_CFLAGS="$GNUTLS_CFLAGS"
-  LIBGNUTLS_LIBS="$GNUTLS_LIBS"
-  AC_SUBST(LIBGNUTLS_CFLAGS)
-  AC_SUBST(LIBGNUTLS_LIBS)
-  AC_DEFINE(HAVE_GNUTLS, 1, [whether to use GnuTSL support.])
+if test "x$with_gnutls" = "xyes"; then
+  PKG_CHECK_MODULES(GNUTLS, gnutls >= 1.0.0, have_gnutls=yes, have_gnutls=no)
+  if test "x$have_gnutls" = "xyes"; then
+    LIBGNUTLS_CFLAGS="$GNUTLS_CFLAGS"
+    LIBGNUTLS_LIBS="$GNUTLS_LIBS"
+    AC_SUBST(LIBGNUTLS_CFLAGS)
+    AC_SUBST(LIBGNUTLS_LIBS)
+    AC_DEFINE(HAVE_GNUTLS, 1, [whether to use GnuTLS support.])
+  fi
 fi
 
 dnl Check -Wall flag of GCC
