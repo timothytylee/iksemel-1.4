@@ -48,7 +48,7 @@ AC_CHECK_FUNCS(getaddrinfo)
 dnl Options for overriding TLS checks
 AC_ARG_WITH([gnutls],
   AS_HELP_STRING([--without-gnutls],[disable checking for GNU TLS]),
-  [with_gnutls=$enableval],
+  [with_gnutls=$withval],
   [with_gnutls=yes]
 )
 
